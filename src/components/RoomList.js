@@ -19,7 +19,6 @@ class RoomList extends Component {
       const room = snapshot.val();
       room.key = snapshot.key;
       this.setState( {rooms: this.state.rooms.concat(room)} )
-      console.log(room.key);
     });
   }
 
@@ -41,7 +40,7 @@ class RoomList extends Component {
         <ul>
           {
             this.state.rooms.map( (room) =>
-              <li key={room.key}>{room.name}</li>
+              <li key={room.key} onClick={() => this.props.handleRoomChange(room.key, room.name)}>{room.name}</li>
            )
           }
         </ul>
