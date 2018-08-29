@@ -59,7 +59,8 @@ class App extends Component {
       <MessageList
         firebase={firebase}
         currentRoom={this.state.currentRoom}
-        currentRoomName={this.state.currentRoomName}>
+        currentRoomName={this.state.currentRoomName}
+        currentUser={this.state.currentUser}>
       </MessageList>
 
       <User

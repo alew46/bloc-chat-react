@@ -20,12 +20,6 @@ class User extends Component {
   }
 
   componentDidMount() {
-    // this.props.firebase.auth().getRedirectResult().then(function(result) {
-    //   var user = result.user;
-    //   return user;
-    // })
-    // this.setState( {user: user} )
-
     this.props.firebase.auth().onAuthStateChanged( user => {
       this.props.setUser(user);
     });
