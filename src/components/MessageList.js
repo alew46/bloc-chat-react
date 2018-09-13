@@ -13,7 +13,8 @@ class MessageList extends Component {
       newMessageUsername: "",
     };
 
-    this.messagesRef = this.props.firebase.database().ref('messages');
+    this.messagesRef = this.props
+    .firebase.database().ref('messages');
 
   };
 
@@ -21,8 +22,13 @@ class MessageList extends Component {
     this.messagesRef.on('child_added', snapshot => {
       const message = snapshot.val();
       message.key = snapshot.key;
-      this.setState( {messages: this.state.messages.concat(message)} )
+      this.setState( {
+        messages: this.state.messages.concat(message)
+      } )
+      console.log(message.message + "was added to mes array")
+      console.log(this.state.messages);
     });
+    console.log(this.state.messages);
   }
 
   handleChange(e) {
@@ -54,15 +60,16 @@ class MessageList extends Component {
     const currentMessageList = (
       this.state.messages.map( (message) => {
         if (message.roomId === this.props.currentRoom) {
-          return <li key={message.key}>{message.message}</li>
-        }
+          return (
+          <li key={message.key}>{message.username}: {message.message}</li>
+        )}
       })
     )
 
     return (
       <div>
         <ul>
-          {currentMessageList}
+          { currentMessageList }
         </ul>
         <p> The message list component thinks {this.props.currentRoomName} is the currently active room and Its key is {this.props.currentRoom}. </p>
         <h3>Add New Message</h3>
