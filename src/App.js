@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
 import './App.css';
 import * as firebase from 'firebase';
-import RoomList from './components/RoomList.js'
-import MessageList from './components/MessageList.js'
-import User from './components/User.js'
+import RoomList from './components/RoomList.js';
+import MessageList from './components/MessageList.js';
+import User from './components/User.js';
+import Dashboard from './components/Dashboard.js';
+import Landing from './components/Landing.js';
 
 // Initialize Firebase
   var config = {
@@ -45,6 +48,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
+      <nav>
+        <Link to='/'>Landing</Link>
+        <Link to='/dashboard'>Dashboard</Link>
+      </nav>
+
+      <main>
+        <Route exact path="/" component={Landing} />
+        <Route path="/dashboard" component={Dashboard} />
+      </main>
 
       <RoomList
         firebase={firebase}
