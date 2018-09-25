@@ -82,6 +82,7 @@ class App extends Component {
         user={this.state.currentUser}>
       </User>
 
+
       </div>
     );
   }
