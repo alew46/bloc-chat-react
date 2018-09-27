@@ -37,11 +37,12 @@ class RoomList extends Component {
 
     return (
       <section className="room-list">
+        <p>Current room is: <strong>{this.props.currentRoomName}</strong></p>
         <ul>
           {
             this.state.rooms.map( (room) =>
               <li key={room.key} onClick={() => this.props.handleRoomChange(room.key, room.name)}>{room.name}</li>
-           )
+            )
           }
         </ul>
         <form onSubmit={ (e) => this.createRoom(e) }>
@@ -56,7 +57,7 @@ class RoomList extends Component {
   }
 
 
-  }
+}
 
 
 export default RoomList;

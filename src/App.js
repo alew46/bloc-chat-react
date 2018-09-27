@@ -42,11 +42,14 @@ class App extends Component {
   }
 
   setUser(user) {
-    console.log("setUser fired and thinks user is ", user)
     this.setState( {currentUser: user} )
   }
 
+
   render() {
+
+    console.log("App's currentRoomName is " + this.state.currentRoomName)
+
     return (
       <div className="App">
 
@@ -56,19 +59,10 @@ class App extends Component {
       </nav>
 
       <main>
-        <Route exact path="/" render={()=><Landing onSetUser={(user) => this.setUser(user)}  currentUser={this.state.currentUser}/>}/>
-        <Route path="/dashboard" component={Dashboard} />
+        <Route exact path="/" render={() => <Landing onSetUser={(user) => this.setUser(user)}  currentUser={this.state.currentUser}/>}/>
+        <Route path="/dashboard" render={() => <Dashboard handleRoomChange={(roomKey, roomName) => this.handleRoomChange(roomKey, roomName) } currentRoomName={this.state.currentRoomName} /> } />
       </main>
 
-      <RoomList
-        firebase={firebase}
-        handleRoomChange={
-          (roomKey, roomName) =>
-          this.handleRoomChange(roomKey, roomName)
-        }>
-      </RoomList>
-
-      <p>Current room is: <strong>{this.state.currentRoomName}</strong></p>
 
       <MessageList
         firebase={firebase}

@@ -25,10 +25,7 @@ class MessageList extends Component {
       this.setState( {
         messages: this.state.messages.concat(message)
       } )
-      console.log(message.message + "was added to mes array")
-      console.log(this.state.messages);
     });
-    console.log(this.state.messages);
   }
 
   handleChange(e) {
