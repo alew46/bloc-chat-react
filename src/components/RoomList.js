@@ -37,7 +37,6 @@ class RoomList extends Component {
 
     return (
       <section className="room-list">
-        <p>Current room is: <strong>{this.props.currentRoomName}</strong></p>
         <ul>
           {
             this.state.rooms.map( (room) =>

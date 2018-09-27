@@ -13,6 +13,9 @@ class Dashboard extends Component {
 
       <div className="Dashboard">
 
+      <p>Current room is: <strong>{this.props.currentRoomName}</strong></p>
+
+
       <RoomList
         firebase={firebase}
         handleRoomChange={
