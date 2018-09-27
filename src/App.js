@@ -42,6 +42,7 @@ class App extends Component {
   }
 
   setUser(user) {
+    console.log("setUser fired and thinks user is ", user)
     this.setState( {currentUser: user} )
   }
 
@@ -55,7 +56,7 @@ class App extends Component {
       </nav>
 
       <main>
-        <Route exact path="/" component={Landing} />
+        <Route exact path="/" render={()=><Landing onSetUser={(user) => this.setUser(user)}  currentUser={this.state.currentUser}/>}/>
         <Route path="/dashboard" component={Dashboard} />
       </main>
 
@@ -81,7 +82,6 @@ class App extends Component {
         setUser={(user) => this.setUser(user)}
         user={this.state.currentUser}>
       </User>
-
 
       </div>
     );

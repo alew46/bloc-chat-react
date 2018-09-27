@@ -9,24 +9,20 @@ class Landing extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-        currentUser: ""
-      };
   }
 
-  setUser(user) {
-    this.setState( {currentUser: user} )
-  }
 
 
   render() {
+    const {currentUser, onSetUser} = this.props;
+    console.log(this.props)
     return (
       <div className="Landing">
 
         <User
           firebase={firebase}
-          setUser={(user) => this.setUser(user)}
-          user={this.state.currentUser}
+          setUser={(user) => onSetUser(user)}
+          user={currentUser}
         />
 
       </div>
