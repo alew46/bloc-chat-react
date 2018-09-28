@@ -13,8 +13,7 @@ class MessageList extends Component {
       newMessageUsername: "",
     };
 
-    this.messagesRef = this.props
-    .firebase.database().ref('messages');
+    this.messagesRef = this.props.firebase.database().ref('messages');
 
   };
 
