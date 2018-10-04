@@ -60,16 +60,16 @@ class App extends Component {
 
       <main>
         <Route exact path="/" render={() => <Landing onSetUser={(user) => this.setUser(user)}  currentUser={this.state.currentUser}/>}/>
-        <Route path="/dashboard" render={() => <div> <Dashboard handleRoomChange={(roomKey, roomName) => this.handleRoomChange(roomKey, roomName) } currentRoomName={this.state.currentRoomName} /> <MessageList currentRoom={this.state.currentRoom} currentRoomName={this.state.currentRoomName} currentUser={this.state.currentUser} /> </div> } />
+        <Route path="/dashboard" render={() =>
+          <div>
+            <Dashboard handleRoomChange={(roomKey, roomName) => this.handleRoomChange(roomKey, roomName) } currentRoomName={this.state.currentRoomName} />
+            <MessageList currentRoom={this.state.currentRoom} currentRoomName={this.state.currentRoomName} currentUser={this.state.currentUser} firebase={firebase} />
+          </div> }
+        />
       </main>
 
 
-      <MessageList
-        firebase={firebase}
-        currentRoom={this.state.currentRoom}
-        currentRoomName={this.state.currentRoomName}
-        currentUser={this.state.currentUser}>
-      </MessageList>
+
 
       <User
         firebase={firebase}

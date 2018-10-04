@@ -25,12 +25,7 @@ class Dashboard extends Component {
         }>
       </RoomList>
 
-      <MessageList
-        firebase={firebase}
-        currentRoom={this.props.currentRoom}
-        currentRoomName={this.props.currentRoomName}
-        currentUser={this.props.currentUser}>
-      </MessageList>
+      
 
 
       </div>
