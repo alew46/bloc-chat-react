@@ -10,13 +10,28 @@ class RoomList extends Component {
         newRoomName: ""
       };
 
+
+  }
+
+  componentWillMount() {
     this.roomsRef = this.props
     .firebase.database().ref('rooms');
+    console.log("on componentWillMount the state's room list is: " + this.state.rooms)
 
   }
 
   componentDidMount() {
     this.roomsRef.on('child_added', snapshot => {
+      const room = snapshot.val();
+      room.key = snapshot.key;
+      this.setState( {rooms: this.state.rooms.concat(room)} )
+      console.log("on componentDidMount the state's room list is: " + this.state.rooms)
+
+    });
+  }
+
+  componentWillUnmount() {
+    this.roomsRef.off('child_added', snapshot => {
       const room = snapshot.val();
       room.key = snapshot.key;
       this.setState( {rooms: this.state.rooms.concat(room)} )
