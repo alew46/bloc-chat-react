@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, Redirect } from 'react-router-dom';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList.js';
@@ -19,6 +19,7 @@ import Landing from './components/Landing.js';
   };
   firebase.initializeApp(config);
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +29,6 @@ class App extends Component {
         currentRoomName: "",
         currentUser: ""
       };
-
 
   }
 
@@ -42,13 +42,13 @@ class App extends Component {
   }
 
   setUser(user) {
+    console.log("App.js' setUser got called!")
     this.setState( {currentUser: user} )
+    console.log(user ? "true" : "false")
   }
 
 
   render() {
-
-    console.log("App's currentRoomName is " + this.state.currentRoomName)
 
     return (
       <div className="App">
@@ -59,23 +59,19 @@ class App extends Component {
       </nav>
 
       <main>
-        <Route exact path="/" render={() => <Landing onSetUser={(user) => this.setUser(user)}  currentUser={this.state.currentUser}/>}/>
-        <Route path="/dashboard" render={() =>
-          <div>
+        <Route exact path="/" render={() => <Landing onSetUser={(user) => this.setUser(user)}  currentUser={this.state.currentUser} firebase={firebase}/>}/>
+        <Route path="/dashboard" render={() => (
+          this.state.currentUser
+            ?
+          (<div>
             <Dashboard handleRoomChange={(roomKey, roomName) => this.handleRoomChange(roomKey, roomName) } currentRoomName={this.state.currentRoomName} />
             <MessageList currentRoom={this.state.currentRoom} currentRoomName={this.state.currentRoomName} currentUser={this.state.currentUser} firebase={firebase} />
-          </div> }
+          </div>)
+            :
+          <Redirect to='/' />
+        )}
         />
       </main>
-
-
-
-
-      <User
-        firebase={firebase}
-        setUser={(user) => this.setUser(user)}
-        user={this.state.currentUser}>
-      </User>
 
       </div>
     );

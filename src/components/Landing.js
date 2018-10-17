@@ -1,6 +1,5 @@
 import React, { Component }  from 'react';
 import User from './User.js';
-import * as firebase from 'firebase';
 
 
 
@@ -8,11 +7,15 @@ import * as firebase from 'firebase';
 class Landing extends Component {
 
 
+
   render() {
-    const {currentUser, onSetUser} = this.props;
+    const {currentUser, onSetUser, firebase} = this.props;
 
     return (
       <div className="Landing">
+
+        <h1>Welcome to Bloc Chat.</h1>
+        <h3>You must be logged in with a Google account to start chatting!</h3>
 
         <User
           firebase={firebase}

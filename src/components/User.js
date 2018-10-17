@@ -8,7 +8,7 @@ class User extends Component {
 
     this.state = {
       user: "no user"
-      };
+    };
   }
 
   handleSignIn() {
@@ -21,10 +21,10 @@ class User extends Component {
   }
 
   componentDidMount() {
-    this.props.firebase.auth().onAuthStateChanged( user => {
-      this.props.setUser(user);
-    });
-  }
+      this.props.firebase.auth().onAuthStateChanged( user => {
+        this.props.setUser(user);
+      });
+    }
 
   render() {
 
